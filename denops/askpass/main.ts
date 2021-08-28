@@ -8,12 +8,13 @@ import { Session } from "https://deno.land/x/msgpack_rpc@v3.1.0/mod.ts";
 import { ASKPASS_ADDRESS } from "./const.ts";
 
 export async function main(denops: Denops): Promise<void> {
-  const [disableSsh] = await batch.gather(
+  const [disableSsh, disableSudo] = await batch.gather(
     denops,
     async (denops) => {
       await vars.g.get(denops, "askpass_disable_ssh", 0);
+      await vars.g.get(denops, "askpass_disable_sudo", 0);
     },
-  ) as [number];
+  ) as [number, number];
   listen(denops).catch((e) => {
     console.error(
       `[askpass] Unexpected error occurred for Neovim listener: ${e}`,
@@ -31,6 +32,11 @@ export async function main(denops: Denops): Promise<void> {
         await vars.e.get(denops, "DISPLAY", "dummy:0"),
       );
       await vars.e.set(denops, "SSH_ASKPASS", askpass);
+    }
+    if (!disableSudo) {
+      // NOTE: Add `-A` option to enable this feature
+      // https://man7.org/linux/man-pages/man8/sudo.8.html
+      await vars.e.set(denops, "SUDO_ASKPASS", askpass);
     }
   });
 }

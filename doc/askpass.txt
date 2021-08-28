@@ -30,6 +30,11 @@ VARIABLE						*askpass-variable*
 
 	Default: 0
 
+*g:askpass#disable_sudo*
+	Do NOT overwrite "SUDO_ASKPASS" environment variable.
+
+	Default: 0
+
 
 =============================================================================
 vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl
