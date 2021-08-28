@@ -1,5 +1,6 @@
 import type { Denops } from "https://deno.land/x/denops_std@v1.8.0/mod.ts";
 import * as path from "https://deno.land/std@0.106.0/path/mod.ts";
+import * as batch from "https://deno.land/x/denops_std@v1.8.0/batch/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v1.8.0/variable/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v1.8.0/function/mod.ts";
 import * as unknownutil from "https://deno.land/x/unknownutil@v1.1.0/mod.ts";
@@ -7,13 +8,31 @@ import { Session } from "https://deno.land/x/msgpack_rpc@v3.1.0/mod.ts";
 import { ASKPASS_ADDRESS } from "./const.ts";
 
 export async function main(denops: Denops): Promise<void> {
+  const [disableSsh] = await batch.gather(
+    denops,
+    async (denops) => {
+      await vars.g.get(denops, "askpass_disable_ssh", 0);
+    },
+  ) as [number];
   listen(denops).catch((e) => {
     console.error(
       `[askpass] Unexpected error occurred for Neovim listener: ${e}`,
     );
   });
   const askpass = path.fromFileUrl(new URL("./cli.ts", import.meta.url));
-  await vars.e.set(denops, "ASKPASS", askpass);
+  await batch.batch(denops, async (denops) => {
+    await vars.e.set(denops, "ASKPASS", askpass);
+    if (!disableSsh) {
+      // NOTE: it may be necessary to redirect the input from /dev/null
+      // https://man.openbsd.org/ssh#SSH_ASKPASS
+      await vars.e.set(
+        denops,
+        "DISPLAY",
+        await vars.e.get(denops, "DISPLAY", "dummy:0"),
+      );
+      await vars.e.set(denops, "SSH_ASKPASS", askpass);
+    }
+  });
 }
 
 async function listen(denops: Denops): Promise<void> {

@@ -7,6 +7,8 @@ License: MIT license
 CONTENTS						*askpass-contents*
 
 INTRODUCTION				|askpass-introduction|
+INTERFACE				|askpass-interface|
+  VARIABLE				|askpass-variable|
 
 
 =============================================================================
@@ -15,6 +17,18 @@ INTRODUCTION						*askpass-introduction*
 Askpass ( *askpass.vim* ) is a plugin that open a prompt on Vim/Neovim when
 some program (e.g. SSH) ask user input (e.g Key file passphrase) through a job
 on Vim/Neovim.
+
+
+=============================================================================
+INTERFACE						*askpass-interface*
+
+-----------------------------------------------------------------------------
+VARIABLE						*askpass-variable*
+
+*g:askpass#disable_ssh*
+	Do NOT overwrite "DISPLAY" and "SSH_ASKPASS" environment variables.
+
+	Default: 0
 
 
 =============================================================================
