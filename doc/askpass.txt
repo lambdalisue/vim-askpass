@@ -1,0 +1,21 @@
+*askpass.txt*			Use Vim/Neovim prompt for CLI user inputs
+
+Author:  Alisue <lambdalisue@hashnote.net>
+License: MIT license
+
+=============================================================================
+CONTENTS						*askpass-contents*
+
+INTRODUCTION				|askpass-introduction|
+
+
+=============================================================================
+INTRODUCTION						*askpass-introduction*
+
+Askpass ( *askpass.vim* ) is a plugin that open a prompt on Vim/Neovim when
+some program (e.g. SSH) ask user input (e.g Key file passphrase) through a job
+on Vim/Neovim.
+
+
+=============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

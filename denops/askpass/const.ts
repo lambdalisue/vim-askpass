@@ -1,0 +1,1 @@
+export const ASKPASS_ADDRESS = "ASKPASS_ADDRESS";
