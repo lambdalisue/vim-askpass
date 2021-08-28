@@ -10,7 +10,7 @@ if (!addr) {
 
 const conn = await Deno.connect(JSON.parse(addr));
 const session = new Session(conn, conn);
-const input = await session.call("ask", Deno.args.at(0) || "") as string;
+const input = await session.call("ask", Deno.args[0] ?? "") as string;
 const encoder = new TextEncoder();
 await writeAll(Deno.stdout, encoder.encode(input));
 session.close();
