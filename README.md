@@ -11,6 +11,12 @@ Askpass (askpass.vim) is a plugin that open a prompt on Vim/Neovim when some
 program (e.g. SSH) ask user input (e.g RSA key passphrase) through a job on
 Vim/Neovim.
 
+<p align="center">
+<img src="https://user-images.githubusercontent.com/546312/131208255-9ac7d582-6bcf-40dd-9eae-3157a0df77bc.gif">
+<br>
+<sup>With <a href="https://github.com/lambdalisue/gin.vim" target="_blank">lambdalisue/gin.vim</a>
+</p>
+
 ## Requirements
 
 - [denops.vim](https://github.com/vim-denops/denops.vim)
