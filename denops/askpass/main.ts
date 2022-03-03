@@ -3,7 +3,7 @@ import * as path from "https://deno.land/std@0.128.0/path/mod.ts";
 import * as batch from "https://deno.land/x/denops_std@v3.1.4/batch/mod.ts";
 import * as vars from "https://deno.land/x/denops_std@v3.1.4/variable/mod.ts";
 import * as fn from "https://deno.land/x/denops_std@v3.1.4/function/mod.ts";
-import * as unknownutil from "https://deno.land/x/unknownutil@v1.1.0/mod.ts";
+import * as unknownutil from "https://deno.land/x/unknownutil@v2.0.0/mod.ts";
 import { Session } from "https://deno.land/x/msgpack_rpc@v3.1.4/mod.ts";
 import { ASKPASS_ADDRESS } from "./const.ts";
 
@@ -61,7 +61,7 @@ async function listen(denops: Denops): Promise<void> {
 function handle(denops: Denops, conn: Deno.Conn): Promise<void> {
   const session = new Session(conn, conn, {
     async ask(prompt: unknown) {
-      unknownutil.ensureString(prompt);
+      unknownutil.assertString(prompt);
       return await fn.inputsecret(denops, prompt);
     },
   });
