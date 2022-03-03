@@ -1,5 +1,9 @@
 name: test
 
+env:
+  DENOPS_PATH: "../denops.vim"
+  DENO_DIR: ".deno"
+
 on:
   schedule:
     - cron: "0 7 * * 0"
@@ -31,14 +35,23 @@ jobs:
         runner:
           - ubuntu-latest
         version:
-          - "1.11.0"
+          - "1.17.1"
           - "1.x"
     runs-on: ${{ matrix.runner }}
     steps:
+      - run: git config --global core.autocrlf false
+        if: runner.os == 'Windows'
       - uses: actions/checkout@v2
       - uses: denoland/setup-deno@v1
         with:
           deno-version: "${{ matrix.version }}"
+      - uses: actions/cache@v2
+        with:
+          path: ${{ env.DENO_DIR }}
+          key: ${{ runner.os }}-deno-${{ matrix.version }}-${{ hashFiles('**/*.ts') }}
+          restore-keys: |
+            ${{ runner.os }}-deno-${{ matrix.version }}-
+            ${{ runner.os }}-deno-
       - name: Lint check
         run: make lint
       - name: Format check
