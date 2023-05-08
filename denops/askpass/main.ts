@@ -21,6 +21,7 @@ export async function main(denops: Denops): Promise<void> {
     );
   });
   const askpass = path.fromFileUrl(new URL("./cli.ts", import.meta.url));
+  const display = await vars.e.get(denops, "DISPLAY", "dummy:0");
   await batch.batch(denops, async (denops) => {
     await vars.e.set(denops, "ASKPASS", askpass);
     if (!disableSsh) {
@@ -29,7 +30,7 @@ export async function main(denops: Denops): Promise<void> {
       await vars.e.set(
         denops,
         "DISPLAY",
-        await vars.e.get(denops, "DISPLAY", "dummy:0"),
+        display,
       );
       await vars.e.set(denops, "SSH_ASKPASS", askpass);
     }
