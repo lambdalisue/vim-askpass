@@ -1,10 +1,10 @@
-import type { Denops } from "https://deno.land/x/denops_std@v3.1.4/mod.ts";
-import * as path from "https://deno.land/std@0.128.0/path/mod.ts";
-import * as batch from "https://deno.land/x/denops_std@v3.1.4/batch/mod.ts";
-import * as vars from "https://deno.land/x/denops_std@v3.1.4/variable/mod.ts";
-import * as fn from "https://deno.land/x/denops_std@v3.1.4/function/mod.ts";
-import * as unknownutil from "https://deno.land/x/unknownutil@v2.0.0/mod.ts";
-import { Session } from "https://deno.land/x/msgpack_rpc@v3.1.4/mod.ts";
+import type { Denops } from "https://deno.land/x/denops_std@v6.5.1/mod.ts";
+import * as path from "https://deno.land/std@0.224.0/path/mod.ts";
+import * as batch from "https://deno.land/x/denops_std@v6.5.1/batch/mod.ts";
+import * as vars from "https://deno.land/x/denops_std@v6.5.1/variable/mod.ts";
+import * as fn from "https://deno.land/x/denops_std@v6.5.1/function/mod.ts";
+import * as unknownutil from "https://deno.land/x/unknownutil@v3.18.1/mod.ts";
+import { Session } from "https://deno.land/x/msgpack_rpc@v4.0.1/mod.ts";
 import { ASKPASS_ADDRESS } from "./const.ts";
 
 export async function main(denops: Denops): Promise<void> {
