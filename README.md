@@ -1,5 +1,11 @@
 # 🎙 askpass.vim
 
+> [!IMPORTANT]
+> askpass.vim is archived and no longer maintained. Use
+> [lambdalisue/vim-guise](https://github.com/lambdalisue/vim-guise) instead,
+> which answers askpass prompts of programs started from a job or terminal in
+> the running Vim/Neovim without Denops or Deno. See `:help guise-askpass`.
+
 [![Deno 1.17.1 or above](https://img.shields.io/badge/Deno-Support%201.17.1-yellowgreen.svg?logo=deno)](https://github.com/denoland/deno/tree/v1.17.1)
 [![Vim 8.2.3452 or above](https://img.shields.io/badge/Vim-Support%208.2.3452-yellowgreen.svg?logo=vim)](https://github.com/vim/vim/tree/v8.2.3452)
 [![Neovim 0.6.0 or above](https://img.shields.io/badge/Neovim-Support%200.6.0-yellowgreen.svg?logo=neovim&logoColor=white)](https://github.com/neovim/neovim/tree/v0.6.0)
